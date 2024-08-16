@@ -1,4 +1,4 @@
-const apiServers = ['https://ep.wizz.cash/proxy', 'https://ep.atomicalmarket.com/proxy', 'https://ep.nextdao.xyz/proxy'];
+const apiServers = ['https://ep.wizz.cash/proxy', 'https://ep.nextdao.xyz/proxy'];
 
 function createHeaders(): Headers {
     return new Headers({
