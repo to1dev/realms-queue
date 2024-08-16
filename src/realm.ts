@@ -121,17 +121,18 @@ async function getSubrealm(id: string): Promise<any | null> {
     return null;
 }
 
-async function processSubrealm(env: Env, results: SubrealmResult[]) {
+async function processSubrealm(env: Env, realm: string, results: SubrealmResult[]) {
     if (results.length > 0) {
         const endpoint = PUBLIC_ELECTRUMX_ENDPOINT2;
 
         try {
             for (const result of results) {
-                const realm = result?.subrealm;
+                const subrealm = result?.subrealm;
+                const combined = `${realm}.${subrealm}`;
                 const id = result?.atomical_id;
                 const data = await getSubrealm(id);
                 if (data) {
-                    await saveToD1(env, realm, data);
+                    await saveToD1(env, combined, data);
                 }
             }
         } catch (e) {
@@ -140,7 +141,7 @@ async function processSubrealm(env: Env, results: SubrealmResult[]) {
     }
 }
 
-async function getSubrealms(env: Env, id: string) {
+async function getSubrealms(env: Env, realm: string, id: string) {
     let page = 0;
     const pageSize = 200;
     let offset = page * pageSize;
@@ -174,7 +175,7 @@ async function getSubrealms(env: Env, id: string) {
                 return;
             }
 
-            await processSubrealm(env, results);
+            await processSubrealm(env, realm, results);
 
             const len = results.length;
             total += len;
@@ -195,10 +196,11 @@ async function getSubrealms(env: Env, id: string) {
 
 export async function realmHandler(message: Message, env: Env): Promise<any | null> {
     const data: any = message.body;
+    const realm = data?.realm;
     const id = data?.id;
 
     if (id) {
-        await getSubrealms(env, id);
+        await getSubrealms(env, realm, id);
     }
 
     return null;

@@ -2,8 +2,9 @@ import { WorkerEntrypoint } from 'cloudflare:workers';
 import { realmHandler } from './realm';
 
 export class QueueWorker extends WorkerEntrypoint<Env> {
-    async sendQueue(id: string) {
+    async sendQueue(realm: string, id: string) {
         await this.env.MY_QUEUE.send({
+            realm: `${realm}`,
             id: `${id}`,
         });
     }
