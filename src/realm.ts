@@ -144,7 +144,7 @@ async function processSubrealm(env: Env, realm: string, results: SubrealmResult[
 
 async function getSubrealms(env: Env, realm: string, id: string) {
     let page = 0;
-    const pageSize = 200;
+    const pageSize = 20;
     let offset = page * pageSize;
     let total = 0;
     let needMore = true;
