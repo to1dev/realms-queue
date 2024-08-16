@@ -88,12 +88,12 @@ id = "4d3e6d39e8044046bb643e54e419332e"
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
 [[queues.producers]]
 binding = "MY_QUEUE"
-queue = "my-queue"
+queue = "realms-queue"
 
 # Bind a Queue consumer. Queue Consumers can retrieve tasks scheduled by Producers to act on them.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
 [[queues.consumers]]
-queue = "my-queue"
+queue = "realms-queue"
 # Optional: Configure batching and retries: https://developers.cloudflare.com/queues/learning/batching-retries/
 # max_batch_size = 10
 # max_batch_timeout = 30
