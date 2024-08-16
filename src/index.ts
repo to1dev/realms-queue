@@ -4,9 +4,7 @@ import { realmHandler } from './realm';
 export class QueueWorker extends WorkerEntrypoint<Env> {
     async sendQueue(id: string) {
         await this.env.MY_QUEUE.send({
-            body: {
-                id: `${id}`,
-            },
+            id: `${id}`,
         });
     }
 }
