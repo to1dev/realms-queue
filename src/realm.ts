@@ -129,6 +129,7 @@ async function processSubrealm(env: Env, realm: string, results: SubrealmResult[
             for (const result of results) {
                 const subrealm = result?.subrealm;
                 const combined = `${realm}.${subrealm}`;
+                console.log(combined);
                 const id = result?.atomical_id;
                 const data = await getSubrealm(id);
                 if (data) {
@@ -198,6 +199,7 @@ export async function realmHandler(message: Message, env: Env): Promise<any | nu
     const data: any = message.body;
     const realm = data?.realm;
     const id = data?.id;
+    console.log(realm);
 
     if (id) {
         await getSubrealms(env, realm, id);
