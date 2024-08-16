@@ -3,7 +3,6 @@ export async function realmHandler(message: Message, env: Env): Promise<any | nu
     const id = data?.id;
 
     if (id) {
-        console.log(id);
     }
 
     return null;
